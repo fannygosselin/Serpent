@@ -31,7 +31,6 @@ window.onload = function (){
     
     function refreshCanvas(){
         snakee.advance();
-
         if(snakee.checkCollision()){
             gameOver();
         }
@@ -44,14 +43,12 @@ window.onload = function (){
                 }
                 while(applee.isOnSnake(snakee))
             }
-
             ctx.clearRect(0,0,canvasWidth, canvasHeight);
             drawScore();
             snakee.draw();
             applee.draw();
             timeout = setTimeout(refreshCanvas,delay);
         }
-
     }
 
     function gameOver(){
@@ -70,7 +67,6 @@ window.onload = function (){
         /*ctx.strokeText("Appuyer sur la touche Espace pour rejouer", centreX, centreY - 120);*/
         ctx.fillText("Appuyer sur la touche Espace pour rejouer", centreX, centreY - 120);
         ctx.restore();
-
     }
 
     function restart(){
@@ -79,7 +75,6 @@ window.onload = function (){
         score = 0;
         clearTimeout(timeout);
         refreshCanvas();
-
     }
 
     function drawScore(){
@@ -93,7 +88,6 @@ window.onload = function (){
         ctx.fillText(score.toString(), centreX, centreY);
         ctx.restore();
     }
-
 
     function drawBlock(ctx, position){
         var x = position[0] * blockSize;
@@ -157,6 +151,7 @@ window.onload = function (){
                 this.direction = newDirection;
             }
         };
+
         this.checkCollision = function(){
             var wallCollision = false;
             var snakeCollision = false;
@@ -174,15 +169,14 @@ window.onload = function (){
             if(isNotBetweenHorizontalWalls || isNotBetweenVerticalWalls){
                 wallCollision = true;
             }
-
             for(var i = 0; i < rest.length ; i++){
                  if(snakeX === rest[i][0] && snakeY === rest[i][1] ){
                      snakeCollision = true;
                  }
             }
-
             return wallCollision || snakeCollision
         };
+
         this.isEatingApple = function(appleToEat){
             var head = this.body[0];
             if(head[0] === appleToEat.position[0] && head[1] === appleToEat.position[1]){
@@ -191,7 +185,6 @@ window.onload = function (){
             else
                 return false;
         };
-  
     }
 
     function Apple(position){
@@ -207,11 +200,13 @@ window.onload = function (){
             ctx.fill();
             ctx.restore();
         };
+
         this.setNewPosition = function (){
             var newX = Math.round(Math.random() * (widthInBlocks -1));
             var newY = Math.round(Math.random() * (heightInBlocks -1));
             this.position = [newX, newY];
         };
+
         this.isOnSnake = function(snakeToCheck){
             var isOnSnake = false;
 
@@ -247,7 +242,5 @@ window.onload = function (){
                 return;
         }
         snakee.setDirection(newDirection)
-
     };
-
     }

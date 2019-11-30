@@ -1,1 +1,1 @@
-Le jeu du serpent crée en JavaScript par Fanny Gosselin
+Le jeu du serpent créé en JavaScript par Fanny Gosselin
